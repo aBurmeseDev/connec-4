@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+#connect4 {
+  background-color: navy;
+  display: inline-block;
+}
+.col {
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin: 7px;
+}

@@ -2,16 +2,20 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
+  /* display: flex; */
 }
 #connect4 {
   background-color: navy;
   display: inline-block;
 }
 .col {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   display: inline-block;
   background-color: #ffffff;
   border-radius: 50%;
   margin: 7px;
+}
+.empty-one {
+  background-color: red;
 }

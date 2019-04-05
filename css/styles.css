@@ -5,8 +5,23 @@ body {
   /* display: flex; */
 }
 #connect4 {
-  background-color: rgb(255, 126, 5);
+  background: #ff7e5f; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #feb47b,
+    #ff7e5f
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #feb47b,
+    #ff7e5f
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   display: inline-block;
+  border-radius: 0.5%;
+}
+h3 {
+  color: #000000;
 }
 .col {
   width: 50px;
@@ -16,14 +31,17 @@ body {
   border-radius: 50%;
   margin: 7px;
 }
+.col.empty {
+  cursor: pointer;
+}
 .empty-redPlayer {
-  background-color: rgb(0, 151, 20);
+  background-color: rgb(28, 79, 173);
 }
 .empty-blackPlayer {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(37, 31, 31);
 }
 .col.redPlayer {
-  background-color: rgb(0, 151, 20);
+  background-color: rgb(0, 74, 212);
 }
 .col.blackPlayer {
   background-color: rgb(0, 0, 0);

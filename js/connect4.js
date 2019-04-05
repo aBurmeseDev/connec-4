@@ -1,8 +1,9 @@
 class Connect4 {
   constructor(connector) {
-    this.rows = 6;
-    this.columns = 7;
+    this.rows = 7;
+    this.columns = 8;
     this.connector = connector;
+    this.isOver = false;
     this.player = "redPlayer";
     this.createGrid();
     this.eventListeners();
@@ -45,9 +46,11 @@ class Connect4 {
       //   console.log(cells);
     }
     $gameboard.on("mouseenter", ".col.empty", function() {
+      if (that.isOver) return;
       const col = $(this).data("col");
       const $lastEmptyCell = findLastEmptyCell(col);
       // add class when mouse hovers
+      // highlight or indicate the color where hovers
       $lastEmptyCell.addClass(`empty-${that.player}`);
       //   console.log(col);
     });
@@ -56,17 +59,90 @@ class Connect4 {
       $(".col").removeClass(`empty-${that.player}`);
     });
     $gameboard.on("click", ".col.empty", function() {
+      if (that.isOver) return;
       const col = $(this).data("col");
       const $lastEmptyCell = findLastEmptyCell(col);
       // remove the class empty when click
-      $lastEmptyCell.removeClass("empty");
+      $lastEmptyCell.removeClass(`empty empty-${that.player}`);
       // add color class
+      // drop the color when click
       $lastEmptyCell.addClass(that.player);
+      $lastEmptyCell.data("player", that.player);
+
+      //   check for winner
+      const winner = that.checkWinner(
+        $lastEmptyCell.data("row"),
+        $lastEmptyCell.data("col")
+      );
+
+      if (winner) {
+        // give him some applause
+        this.isOver = true;
+        alert(`${that.player} won`);
+        // remove highlight after game is over
+        $(".col.empty").removeClass("empty");
+        return;
+      }
+
+      //   alternate the dropping color
       if (that.player === "redPlayer") {
         that.player = "blackPlayer";
       } else {
         that.player = "redPlayer";
       }
+
+      $(this).trigger("mouseenter");
     });
+  }
+
+  checkWinner(row, col) {
+    const that = this;
+    //    do sothiing
+    //    get the current each cell of col and row
+    const $getCell = (i, j) => {
+      return $(`.col[data-row='${i}'][data-col='${j}']`);
+    };
+    //  check direction
+    const checkDirection = direction => {
+      let total = 0;
+      let i = row + direction.i;
+      let j = col + direction.j;
+      let $next = $getCell(i, j);
+      // keep doing this until the cells are full
+      while (
+        i < that.rows &&
+        j < that.columns &&
+        i >= 0 &&
+        j >= 0 &&
+        $next.data("player") === that.player
+      ) {
+        total++;
+        i += direction.i;
+        j += direction.j;
+
+        $next = $getCell(i, j);
+      }
+      return total;
+    };
+
+    const checkWin = (dirA, dirB) => {
+      const total = checkDirection(dirA) + checkDirection(dirB) + 1;
+      if (total >= 4) {
+        return that.player;
+      } else {
+        return null;
+      }
+    };
+
+    // check Horizontal wins
+    const checkHor = () => {
+      return checkWin({ i: 0, j: -1 }, { i: 0, j: 1 });
+    };
+    // check Vertical wins
+    const checkVer = () => {
+      return checkWin({ i: 1, j: 0 }, { i: -1, j: 0 });
+    };
+    // check diagonals
+    return checkHor() || checkVer();
   }
 }

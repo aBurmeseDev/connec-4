@@ -3,22 +3,36 @@ body {
   padding: 0;
   text-align: center;
   /* display: flex; */
+  background: rgba(0, 0, 0, 0.2);
 }
 #connect4 {
-  background: #ff7e5f; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #feb47b,
-    #ff7e5f
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #feb47b,
-    #ff7e5f
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-color: #007bff;
 
   display: inline-block;
-  border-radius: 0.5%;
+  /* border-radius: 0.5%; */
+}
+.inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+}
+.playerInput1 {
+  margin: 10px;
+  text-align: center;
+  border: 3px solid #ffc107;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+.playerInput2 {
+  margin: 10px;
+  text-align: center;
+  border: 3px solid #ffc107;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
 h3 {
   color: #000000;
@@ -34,14 +48,62 @@ h3 {
 .col.empty {
   cursor: pointer;
 }
+/* .modal {
+  position: fixed;
+  
+  height: 100%;
+  width: 100%;
+} */
+.modal-content {
+  position: absolute;
+  left: 28%;
+  top: 5%;
+  display: none;
+  background-color: #ffc107dc;
+  color: #007bff;
+  margin: 0 auto;
+  padding: 20px;
+  width: 40%;
+  height: 20%;
+  z-index: 5;
+  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+}
+.closeBtn {
+  position: relative;
+  bottom: 12px;
+
+  float: right;
+  font-size: 15px;
+  color: #838383;
+}
+.closeBtn:hover,
+.closeBtn:focus {
+  color: #000000;
+  cursor: pointer;
+  text-decoration: none;
+}
+.resetBtn {
+  display: inline-block;
+  align-items: center;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  /* margin: 6px 0 6px 12px; */
+}
 .empty-redPlayer {
-  background-color: rgb(28, 79, 173);
+  background-color: #ff142bea;
 }
 .empty-blackPlayer {
   background-color: rgb(37, 31, 31);
 }
 .col.redPlayer {
-  background-color: rgb(0, 74, 212);
+  background-color: #ff142b;
 }
 .col.blackPlayer {
   background-color: rgb(0, 0, 0);

@@ -9,6 +9,11 @@ class Connect4 {
     this.eventListeners();
   }
   createGrid() {
+    // inputs
+
+    // reset
+    const $reset = $("button").addClass("resetBtn");
+
     // create a div
     const $gameboard = $(this.connector);
     for (let row = 0; row < this.rows; row++) {
@@ -81,6 +86,16 @@ class Connect4 {
         alert(`${that.player} won`);
         // remove highlight after game is over
         $(".col.empty").removeClass("empty");
+        // modal pops up
+        const $modal = $(".modal-content");
+        $modal.css("display", "block").text(`${that.player} won!`);
+
+        $gameboard.css("z-index", "1");
+        // close modal
+        const $closeBtn = $(".closeBtn");
+        $closeBtn.on("click", () => {
+          $modal.css("display", "none");
+        });
         return;
       }
 
@@ -96,15 +111,17 @@ class Connect4 {
   }
 
   checkWinner(row, col) {
+    //
     const that = this;
-    //    do sothiing
+
     //    get the current each cell of col and row
     const $getCell = (i, j) => {
       return $(`.col[data-row='${i}'][data-col='${j}']`);
     };
     //  check direction
     const checkDirection = direction => {
-      let total = 0;
+      let cellNum = 0;
+      // row and move i direction
       let i = row + direction.i;
       let j = col + direction.j;
       let $next = $getCell(i, j);
@@ -116,18 +133,18 @@ class Connect4 {
         j >= 0 &&
         $next.data("player") === that.player
       ) {
-        total++;
+        cellNum++;
         i += direction.i;
         j += direction.j;
 
         $next = $getCell(i, j);
       }
-      return total;
+      return cellNum;
     };
 
     const checkWin = (dirA, dirB) => {
-      const total = checkDirection(dirA) + checkDirection(dirB) + 1;
-      if (total >= 4) {
+      const cellNum = 1 + checkDirection(dirA) + checkDirection(dirB);
+      if (cellNum >= 4) {
         return that.player;
       } else {
         return null;
@@ -136,13 +153,23 @@ class Connect4 {
 
     // check Horizontal wins
     const checkHor = () => {
-      return checkWin({ i: 0, j: -1 }, { i: 0, j: 1 });
+      //
+      return checkWin({ i: 0, j: 1 }, { i: 0, j: -1 });
     };
     // check Vertical wins
     const checkVer = () => {
-      return checkWin({ i: 1, j: 0 }, { i: -1, j: 0 });
+      // up row = -1, column = 0 and down row = 1, column 0
+      return checkWin({ i: -1, j: 0 }, { i: 1, j: 0 });
     };
-    // check diagonals
-    return checkHor() || checkVer();
+    // check Diagonal Left to Right
+    const checkDiaganolLR = () => {
+      return checkWin({ i: 1, j: 1 }, { i: 1, j: -1 });
+    };
+    // check Diagonal Right to Left
+    const checkDiaganolRL = () => {
+      return checkWin({ i: 1, j: 1 }, { i: -1, j: -1 });
+    };
+
+    return checkHor() || checkVer() || checkDiaganolLR() || checkDiaganolRL();
   }
 }

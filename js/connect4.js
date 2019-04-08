@@ -11,11 +11,10 @@ class Connect4 {
   createGrid() {
     // inputs
 
-    // reset
-    const $reset = $("button").addClass("resetBtn");
-
     // create a div
     const $gameboard = $(this.connector);
+    this.isOver = false;
+    $gameboard.empty();
     for (let row = 0; row < this.rows; row++) {
       const $row = $("<div></div>").addClass("row");
 
@@ -83,25 +82,29 @@ class Connect4 {
       if (winner) {
         // give him some applause
         this.isOver = true;
-        alert(`${that.player} won`);
+        // alert(`${that.player} won`);
         // remove highlight after game is over
         $(".col.empty").removeClass("empty");
         // modal pops up
         const $modal = $(".modal-content");
-        $modal.css("display", "block").text(`${that.player} won!`);
+        $modal
+          .css("display", "flex")
+          .text(
+            `Congratulations     ${that.player}!     You are connec4 master`
+          );
 
         $gameboard.css("z-index", "1");
         // close modal
-        const $closeBtn = $(".closeBtn");
-        $closeBtn.on("click", () => {
-          $modal.css("display", "none");
-        });
+        // const $closeBtn = $(".closeBtn");
+        // $closeBtn.on("click", () => {
+        //   $modal.css("display", "none");
+        // });
         return;
       }
 
       //   alternate the dropping color
       if (that.player === "redPlayer") {
-        that.player = "blackPlayer";
+        that.player = "yellowPlayer";
       } else {
         that.player = "redPlayer";
       }
@@ -171,5 +174,10 @@ class Connect4 {
     };
 
     return checkHor() || checkVer() || checkDiaganolLR() || checkDiaganolRL();
+  }
+  restart() {
+    this.createGrid();
+    const $modal = $(".modal-content");
+    $modal.css("display", "none");
   }
 }

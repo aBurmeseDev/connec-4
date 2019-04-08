@@ -3,13 +3,25 @@ body {
   padding: 0;
   text-align: center;
   /* display: flex; */
-  background: rgba(0, 0, 0, 0.2);
+  background: #0d82ff88;
 }
 #connect4 {
   background-color: #007bff;
+  -webkit-box-shadow: 3px 27px 21px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 3px 27px 21px 0px rgba(0, 0, 0, 1);
+  box-shadow: 3px 27px 21px 0px rgba(0, 0, 0, 1);
+  margin-bottom: 10px;
 
   display: inline-block;
   /* border-radius: 0.5%; */
+}
+.color {
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  border-radius: 50%;
+  margin: 0 auto;
+  background-color: yellow;
 }
 .inputs {
   display: flex;
@@ -35,7 +47,9 @@ body {
   line-height: 1.5;
 }
 h3 {
-  color: #000000;
+  color: #ffffff;
+  height: 10vh;
+  margin-top: 30px;
 }
 .col {
   width: 50px;
@@ -48,42 +62,42 @@ h3 {
 .col.empty {
   cursor: pointer;
 }
-/* .modal {
-  position: fixed;
-  
-  height: 100%;
-  width: 100%;
-} */
-.modal-content {
+.modal {
   position: absolute;
-  left: 28%;
-  top: 5%;
+  left: 40%;
+  top: 40%;
+  width: 300px;
+}
+.modal-content {
   display: none;
-  background-color: #ffc107dc;
-  color: #007bff;
-  margin: 0 auto;
+  background-color: #ff1900;
+  color: #f4f4f4;
+  font-size: 20px;
   padding: 20px;
-  width: 40%;
-  height: 20%;
-  z-index: 5;
+
+  z-index: 1;
   -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  animation: modalPops 0.5s;
 }
-.closeBtn {
-  position: relative;
-  bottom: 12px;
+/* .closeBtn { */
+/* width: 10px;
+  height: 10px;
+  background-color: #007bff; */
+
+/* position: absolute;
 
   float: right;
   font-size: 15px;
-  color: #838383;
-}
-.closeBtn:hover,
+  color: #ff0101; */
+
+/* .closeBtn:hover,
 .closeBtn:focus {
   color: #000000;
   cursor: pointer;
   text-decoration: none;
-}
+} */
 .resetBtn {
   display: inline-block;
   align-items: center;
@@ -94,17 +108,40 @@ h3 {
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem;
-  /* margin: 6px 0 6px 12px; */
+  margin: 6px 0 6px 12px;
 }
 .empty-redPlayer {
   background-color: #ff142bea;
 }
-.empty-blackPlayer {
-  background-color: rgb(37, 31, 31);
+.empty-yellowPlayer {
+  background-color: #ffee07ea;
 }
 .col.redPlayer {
   background-color: #ff142b;
 }
-.col.blackPlayer {
-  background-color: rgb(0, 0, 0);
+.col.yellowPlayer {
+  background-color: #ffee07;
+}
+canvas {
+  background-color: red;
+}
+/* keyframes */
+@keyframes modalPops {
+  from {
+    -webkit-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  to {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
 }

@@ -6,14 +6,32 @@ class Connect4 {
     this.isOver = false;
     this.player = "redPlayer";
     this.colorTurn = function() {};
+    this.showUserName();
     this.createGrid();
     this.eventListeners();
   }
-  createGrid() {
+  // show player names
+  showUserName() {
     // inputs
+    let $inputOne = $(".playerInput1");
+    let $inputTwo = $(".playerInput2");
+    let $playerOne = $(".playerOneName");
+    let $playerTwo = $(".playerTwoName");
 
+    $inputTwo.on("blur", () => {
+      $playerOne.text($inputOne.val() + " ").css("color", "#ff142b");
+      $playerTwo.text(" " + $inputTwo.val()).css("color", "#ffee07");
+      $playerOne.val();
+      $playerTwo.val();
+      $(".players").css("display", "flex");
+      $("input").css("display", "none");
+    });
+  }
+
+  createGrid() {
     // create a div
     const $gameboard = $(this.connector);
+
     this.isOver = false;
     $gameboard.empty();
     for (let row = 0; row < this.rows; row++) {
@@ -31,6 +49,7 @@ class Connect4 {
       $gameboard.append($row);
     }
   }
+
   // set up event listeners
   eventListeners() {
     const $gameboard = $(this.connector);
@@ -53,16 +72,16 @@ class Connect4 {
     $gameboard.on("mouseenter", ".col.empty", function() {
       if (that.isOver) return;
       const col = $(this).data("col");
-      const $lastEmptyCell = findLastEmptyCell(col);
+      // const $lastEmptyCell = findLastEmptyCell(col);
       // add class when mouse hovers
       // highlight or indicate the color where hovers
-      $lastEmptyCell.addClass(`empty-${that.player}`);
+      // $lastEmptyCell.addClass(`empty-${that.player}`);
       //   console.log(col);
     });
     // remove class when mouse leaves
-    $gameboard.on("mouseleave", ".col", function() {
-      $(".col").removeClass(`empty-${that.player}`);
-    });
+    // $gameboard.on("mouseleave", ".col", function() {
+    //   $(".col").removeClass(`empty-${that.player}`);
+    // });
     $gameboard.on("click", ".col.empty", function() {
       if (that.isOver) return;
       const col = $(this).data("col");
@@ -86,11 +105,12 @@ class Connect4 {
         // alert(`${that.player} won`);
         // remove highlight after game is over
         $(".col.empty").removeClass("empty");
+
         // modal pops up
         const $modal = $(".modal-content");
         $modal
           .css("display", "flex")
-          .text(`Congratulations ${that.player}! You are connec4 master`);
+          .text(`Congratulations! ${that.player} You are connec4 master`);
 
         $gameboard.css("z-index", "1");
         // close modal
@@ -175,11 +195,7 @@ class Connect4 {
 
     return checkHor() || checkVer() || checkDiaganolLR() || checkDiaganolRL();
   }
-  // showUserName (){
-  //   const $inputOne = $('.playerInput1');
-  //   const $inputTwo = $('.playerInput2');
 
-  // }
   restart() {
     this.createGrid();
     const $modal = $(".modal-content");

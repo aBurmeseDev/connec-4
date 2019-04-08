@@ -1,6 +1,7 @@
 $(document).ready(function() {
   console.log("worki");
   const connect4 = new Connect4("#connect4");
+
   connect4.colorTurn = function() {
     if (connect4.player === "redPlayer") {
       $(".colorTurn").css("backgroundColor", "#ff142b");

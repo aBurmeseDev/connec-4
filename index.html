@@ -17,28 +17,33 @@
     <script defer src="js/connect4.js"></script>
     <script defer src="js/app.js"></script>
 
-    <title>Document</title>
+    <title>Play connec-4</title>
   </head>
   <body>
-    <header></header>
-
+    <!-- style="background-image: url('gameboardBackground.jpg')" -->
     <h3>connec4</h3>
+
+    <input
+      type="text"
+      class="playerInput1"
+      placeholder="Player 1: Enter Name"
+    />
+
+    <input
+      type="text"
+      class="playerInput2"
+      placeholder="Player 2: Enter Name"
+    />
+    <div class="players">
+      <h4 class="playerOneName"></h4>
+      <span>&nbsp; VS &nbsp;</span>
+      <h4 class="playerTwoName"></h4>
+    </div>
     <div class="colorTurn"></div>
+
     <div id="connect4"></div>
     <div class="modal">
       <div class="modal-content"></div>
-    </div>
-    <div class="inputs">
-      <input
-        type="text"
-        class="playerInput1"
-        placeholder="Player 1: Enter Name"
-      />
-      <input
-        type="text"
-        class="playerInput2"
-        placeholder="Player 2: Enter Name"
-      />
     </div>
 
     <button class="resetBtn">Play Again</button>

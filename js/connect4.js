@@ -5,6 +5,7 @@ class Connect4 {
     this.connector = connector;
     this.isOver = false;
     this.player = "redPlayer";
+    this.colorTurn = function() {};
     this.createGrid();
     this.eventListeners();
   }
@@ -89,9 +90,7 @@ class Connect4 {
         const $modal = $(".modal-content");
         $modal
           .css("display", "flex")
-          .text(
-            `Congratulations     ${that.player}!     You are connec4 master`
-          );
+          .text(`Congratulations ${that.player}! You are connec4 master`);
 
         $gameboard.css("z-index", "1");
         // close modal
@@ -108,7 +107,8 @@ class Connect4 {
       } else {
         that.player = "redPlayer";
       }
-
+      // color cell showing whose turn
+      that.colorTurn();
       $(this).trigger("mouseenter");
     });
   }
@@ -175,6 +175,11 @@ class Connect4 {
 
     return checkHor() || checkVer() || checkDiaganolLR() || checkDiaganolRL();
   }
+  // showUserName (){
+  //   const $inputOne = $('.playerInput1');
+  //   const $inputTwo = $('.playerInput2');
+
+  // }
   restart() {
     this.createGrid();
     const $modal = $(".modal-content");

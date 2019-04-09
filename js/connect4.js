@@ -15,12 +15,13 @@ class Connect4 {
     // inputs
     let $inputOne = $(".playerInput1");
     let $inputTwo = $(".playerInput2");
-    let $playerOne = $(".playerOneName");
-    let $playerTwo = $(".playerTwoName");
+    var $playerOne = $(".playerOneName");
+    var $playerTwo = $(".playerTwoName");
 
     $inputTwo.on("change", () => {
       $playerOne.text($inputOne.val()).css("color", "#ff142b");
       $playerTwo.text($inputTwo.val()).css("color", "#ffee07");
+      console.log($playerOne);
       // $playerOne.val();
       // $playerTwo.val();
       $(".players").css("display", "flex");
@@ -125,6 +126,10 @@ class Connect4 {
         // });
         return;
       }
+
+      $("body").on("click", e => {
+        console.log(e);
+      });
 
       //   alternate the dropping color
       if (that.player === "playerOne") {

@@ -59,7 +59,7 @@ h3 {
 h4 {
   font-size: 32px;
   padding-top: 3px;
-  padding-bottom: 9px;
+  padding-bottom: 15px;
   margin: 7px;
   /* animation: modalPops 5s; */
 }
@@ -147,9 +147,11 @@ h4 {
 }
 .col.playerOne {
   background-color: #ff142b;
+  animation: fall 500ms;
 }
 .col.playerTwo {
   background-color: #ffee07;
+  animation: fall 500ms;
 }
 
 /* keyframes */
@@ -195,5 +197,13 @@ h4 {
 @keyframes blinker {
   50% {
     opacity: 0;
+  }
+}
+@keyframes fall {
+  from {
+    transform: translateY(-500px);
+  }
+  to {
+    transform: translateY(0);
   }
 }

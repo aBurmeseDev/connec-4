@@ -4,7 +4,7 @@ class Connect4 {
     this.columns = 8;
     this.connector = connector;
     this.isOver = false;
-    this.player = "redPlayer";
+    this.player = "playerOne";
     this.colorTurn = function() {};
     this.showUserName();
     this.createGrid();
@@ -18,11 +18,11 @@ class Connect4 {
     let $playerOne = $(".playerOneName");
     let $playerTwo = $(".playerTwoName");
 
-    $inputTwo.on("blur", () => {
-      $playerOne.text($inputOne.val() + " ").css("color", "#ff142b");
-      $playerTwo.text(" " + $inputTwo.val()).css("color", "#ffee07");
-      $playerOne.val();
-      $playerTwo.val();
+    $inputTwo.on("change", () => {
+      $playerOne.text($inputOne.val()).css("color", "#ff142b");
+      $playerTwo.text($inputTwo.val()).css("color", "#ffee07");
+      // $playerOne.val();
+      // $playerTwo.val();
       $(".players").css("display", "flex");
       $("input").css("display", "none");
     });
@@ -83,14 +83,19 @@ class Connect4 {
     //   $(".col").removeClass(`empty-${that.player}`);
     // });
     $gameboard.on("click", ".col.empty", function() {
+      const rollSound = new Audio("token.mp3");
+      rollSound.play();
       if (that.isOver) return;
       const col = $(this).data("col");
+      const row = $(this).data("row");
       const $lastEmptyCell = findLastEmptyCell(col);
       // remove the class empty when click
       $lastEmptyCell.removeClass(`empty empty-${that.player}`);
+      var margin = (row + 1) * 80;
       // add color class
       // drop the color when click
       $lastEmptyCell.addClass(that.player);
+
       $lastEmptyCell.data("player", that.player);
 
       //   check for winner
@@ -122,10 +127,10 @@ class Connect4 {
       }
 
       //   alternate the dropping color
-      if (that.player === "redPlayer") {
-        that.player = "yellowPlayer";
+      if (that.player === "playerOne") {
+        that.player = "playerTwo";
       } else {
-        that.player = "redPlayer";
+        that.player = "playerOne";
       }
       // color cell showing whose turn
       that.colorTurn();

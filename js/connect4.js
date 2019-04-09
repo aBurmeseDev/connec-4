@@ -84,7 +84,7 @@ class Connect4 {
     //   $(".col").removeClass(`empty-${that.player}`);
     // });
     $gameboard.on("click", ".col.empty", function() {
-      const rollSound = new Audio("token.mp3");
+      const rollSound = new Audio("resources/token.mp3");
       rollSound.play();
       if (that.isOver) return;
       const col = $(this).data("col");
@@ -92,7 +92,7 @@ class Connect4 {
       const $lastEmptyCell = findLastEmptyCell(col);
       // remove the class empty when click
       $lastEmptyCell.removeClass(`empty empty-${that.player}`);
-      var margin = (row + 1) * 80;
+
       // add color class
       // drop the color when click
       $lastEmptyCell.addClass(that.player);
@@ -116,20 +116,11 @@ class Connect4 {
         const $modal = $(".modal-content");
         $modal
           .css("display", "flex")
-          .text(`Congratulations! ${that.player} You are connec4 master`);
+          .text(`Congratulations! You are connec4 master`);
 
         $gameboard.css("z-index", "1");
-        // close modal
-        // const $closeBtn = $(".closeBtn");
-        // $closeBtn.on("click", () => {
-        //   $modal.css("display", "none");
-        // });
         return;
       }
-
-      $("body").on("click", e => {
-        console.log(e);
-      });
 
       //   alternate the dropping color
       if (that.player === "playerOne") {
@@ -158,6 +149,9 @@ class Connect4 {
       let i = row + direction.i;
       let j = col + direction.j;
       let $next = $getCell(i, j);
+      console.log("column", i);
+      console.log("row", j);
+      console.log($next);
       // keep doing this until the cells are full
       while (
         i < that.rows &&

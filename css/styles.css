@@ -2,13 +2,11 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  /* background-repeat: no-repeat;
-  background-size: 100% 121%; */
-
   background: #0d82ff88;
+  font-family: "Merienda", "Indie Flower", sans-serif;
 }
 #connect4 {
-  background-color: #007bff;
+  background-color: #007bffd2;
   -webkit-box-shadow: 3px 6px 5px 0px rgba(2, 34, 68, 1);
   -moz-box-shadow: 3px 6px 5px 0px rgba(2, 34, 68, 1);
   box-shadow: 3px 6px 5px 0px rgba(2, 34, 68, 1);
@@ -91,7 +89,7 @@ h4 {
 .modal {
   /* position: absolute; */
   margin: 0 auto;
-  width: 300px;
+  width: 450px;
 }
 .modal-content {
   display: none;
@@ -108,36 +106,26 @@ h4 {
   box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
   animation: blinker 0.5s linear 15;
 }
-
-.closeBtn {
-  width: 10px;
-  height: 10px;
-  background-color: #007bff;
-
-  position: absolute;
-
-  float: right;
-  font-size: 15px;
-  color: #ff0101;
-}
-
-.closeBtn:hover,
-.closeBtn:focus {
-  color: #000000;
-  cursor: pointer;
-  text-decoration: none;
-}
 .resetBtn {
+  font-family: "Indie Flower", sans-serif;
+  letter-spacing: 2px;
   display: inline-block;
   align-items: center;
   color: #fff;
   background-color: #007bff;
-  border-color: #007bff;
+  background-position: -0% 0;
+  transition: background-position 0.5s ease-out;
+
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
   line-height: 1.5;
-  border-radius: 0.3rem;
+  border: 3px solid #007bff;
+  border-radius: 6px;
   margin: 22px 0 0 12px;
+}
+.resetBtn:hover {
+  border-radius: 50px;
+  transition: all 0.3s ease 0s;
 }
 .empty-playerOne {
   background-color: #ff142bea;
@@ -201,9 +189,20 @@ h4 {
 }
 @keyframes fall {
   from {
-    transform: translateY(-500px);
+    transform: translateY(-400px);
   }
   to {
     transform: translateY(0);
+  }
+}
+@keyframes blink {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
   }
 }

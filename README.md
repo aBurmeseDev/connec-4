@@ -14,6 +14,8 @@ The objective of the game is to be the first to form a horizontal, vertical, or 
 * JavaScript
 * JQuery
 * JQuery Modal
+### Link to deployed game 
+[Link](https://aburmesedev.github.io/connec-4/)
 ### Planned Features
 win or lose track with using tokens
 play with computer

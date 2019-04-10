@@ -21,9 +21,6 @@ class Connect4 {
     $inputTwo.on("change", () => {
       $playerOne.text($inputOne.val()).css("color", "#ff142b");
       $playerTwo.text($inputTwo.val()).css("color", "#ffee07");
-      console.log($playerOne);
-      // $playerOne.val();
-      // $playerTwo.val();
       $(".players").css("display", "flex");
       $("input").css("display", "none");
     });
@@ -73,18 +70,10 @@ class Connect4 {
     $gameboard.on("mouseenter", ".col.empty", function() {
       if (that.isOver) return;
       const col = $(this).data("col");
-      // const $lastEmptyCell = findLastEmptyCell(col);
-      // add class when mouse hovers
-      // highlight or indicate the color where hovers
-      // $lastEmptyCell.addClass(`empty-${that.player}`);
-      //   console.log(col);
     });
-    // remove class when mouse leaves
-    // $gameboard.on("mouseleave", ".col", function() {
-    //   $(".col").removeClass(`empty-${that.player}`);
-    // });
+
     $gameboard.on("click", ".col.empty", function() {
-      const rollSound = new Audio("resources/token.mp3");
+      const rollSound = new Audio("resources/disc-drop.mp3");
       rollSound.play();
       if (that.isOver) return;
       const col = $(this).data("col");
@@ -108,15 +97,22 @@ class Connect4 {
       if (winner) {
         // give him some applause
         this.isOver = true;
-        // alert(`${that.player} won`);
-        // remove highlight after game is over
+        // stop user from playing the board
         $(".col.empty").removeClass("empty");
-
         // modal pops up
         const $modal = $(".modal-content");
+        const winner =
+          that.player === "playerOne"
+            ? $(".playerOneName")
+                .text()
+                .toUpperCase()
+            : $(".playerTwoName")
+                .text()
+                .toUpperCase();
+
         $modal
-          .css("display", "flex")
-          .text(`Congratulations! You are connec4 master`);
+          .css({ display: "flex", "text-align": "center" })
+          .text(`Congratulations ${winner}! You are the connec-4 master`);
 
         $gameboard.css("z-index", "1");
         return;
@@ -188,11 +184,11 @@ class Connect4 {
       // up row = -1, column = 0 and down row = 1, column 0
       return checkWin({ i: -1, j: 0 }, { i: 1, j: 0 });
     };
-    // check Diagonal Left to Right
+    // check Diagonal bottom Left to top Right
     const checkDiaganolLR = () => {
-      return checkWin({ i: 1, j: 1 }, { i: 1, j: -1 });
+      return checkWin({ i: 1, j: -1 }, { i: 1, j: 1 });
     };
-    // check Diagonal Right to Left
+    // check Diagonal top Left to bottom Right
     const checkDiaganolRL = () => {
       return checkWin({ i: 1, j: 1 }, { i: -1, j: -1 });
     };

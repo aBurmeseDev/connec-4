@@ -3,16 +3,17 @@ body {
   padding: 0;
   text-align: center;
   background: #0d82ff88;
-  font-family: "Merienda", "Indie Flower", sans-serif;
+  font-family: "Merienda", "Quicksand", "Rubik", sans-serif;
 }
 #connect4 {
-  background-color: #007bffd2;
+  background-color: #007bff71;
   -webkit-box-shadow: 3px 6px 5px 0px rgba(2, 34, 68, 1);
   -moz-box-shadow: 3px 6px 5px 0px rgba(2, 34, 68, 1);
   box-shadow: 3px 6px 5px 0px rgba(2, 34, 68, 1);
   margin-top: 20px;
   margin-bottom: 20px;
   display: inline-block;
+  animation: blink 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .colorTurn {
   width: 50px;
@@ -23,43 +24,72 @@ body {
 
   margin-top: 20px;
 }
-.inputs {
+.input {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
   margin-top: 5px;
   margin-bottom: 10px;
   padding: 1rem;
 }
 .playerInput1 {
-  margin: 10px;
+  margin: 15px;
   text-align: center;
-  border: 3px solid #ffc107;
+  letter-spacing: 2px;
+  border: none;
+  border-top: 3px solid #fffb07;
+  border-bottom: 3px solid #fffb07;
+  outline: none;
+  background: transparent;
   padding: 0.5rem 1rem;
   font-size: 0.75rem;
   line-height: 1.5;
+  width: 160px;
+}
+.playerInput1:focus {
+  border: none;
+  border-left: 3px solid #fffb07;
+  border-right: 3px solid #fffb07;
+  animation: inputs 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .playerInput2 {
-  margin: 10px;
+  margin: 15px;
   text-align: center;
-  border: 3px solid #ffc107;
+  letter-spacing: 2px;
+  border: none;
+  border-top: 3px solid #fffb07;
+  border-bottom: 3px solid #fffb07;
+  outline: none;
+  background: transparent;
   padding: 0.5rem 1rem;
   font-size: 0.75rem;
   line-height: 1.5;
+  width: 160px;
+}
+.playerInput2:focus {
+  border: none;
+  border-left: 3px solid #fffb07;
+  border-right: 3px solid #fffb07;
+  animation: inputs 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+::placeholder {
+  color: #f4f4f4;
 }
 h3 {
   color: #ffffff;
-  /* height: vh; */
-  font-size: 20px;
+  font-size: 32px;
   margin-top: 30px;
   margin-bottom: 25px;
+  animation: slide-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 h4 {
   font-size: 32px;
   padding-top: 3px;
-  padding-bottom: 15px;
+  padding-bottom: 12px;
   margin: 7px;
-  /* animation: modalPops 5s; */
+  font-family: "Rubik", sans-serif;
+  letter-spacing: 2px;
 }
 .players {
   justify-content: center;
@@ -71,6 +101,9 @@ h4 {
   display: none;
   animation: names 1s;
 }
+span {
+  color: #f4f4f4;
+}
 .col {
   width: 50px;
   height: 50px;
@@ -78,27 +111,26 @@ h4 {
   background-color: #ffffff;
   border-radius: 50%;
   margin: 7px;
-  -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .col.empty {
   cursor: pointer;
 }
 .modal {
-  /* position: absolute; */
   margin: 0 auto;
-  width: 450px;
+  width: 500px;
 }
 .modal-content {
   display: none;
-  background-color: #3caf07;
-  /* white-space: pre-line; */
+  background-color: #04c088;
+  font-family: "Quicksand", sans-serif;
   margin: 0 auto;
   color: #f4f4f4;
   font-size: 20px;
-  padding: 20px;
+  padding: 15px;
   position: relative;
   z-index: 1;
   -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
@@ -107,13 +139,14 @@ h4 {
   animation: blinker 0.5s linear 15;
 }
 .resetBtn {
-  font-family: "Indie Flower", sans-serif;
+  font-family: "Merienda", sans-serif;
   letter-spacing: 2px;
   display: inline-block;
   align-items: center;
   color: #fff;
   background-color: #007bff;
   background-position: -0% 0;
+  outline: none;
   transition: background-position 0.5s ease-out;
 
   padding: 0.5rem 1rem;
@@ -127,19 +160,14 @@ h4 {
   border-radius: 50px;
   transition: all 0.3s ease 0s;
 }
-.empty-playerOne {
-  background-color: #ff142bea;
-}
-.empty-playerTwo {
-  background-color: #ffee07ea;
-}
+
 .col.playerOne {
   background-color: #ff142b;
-  animation: fall 500ms;
+  animation: bounce 0.7s;
 }
 .col.playerTwo {
   background-color: #ffee07;
-  animation: fall 500ms;
+  animation: bounce 0.7s;
 }
 
 /* keyframes */
@@ -187,14 +215,7 @@ h4 {
     opacity: 0;
   }
 }
-@keyframes fall {
-  from {
-    transform: translateY(-400px);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
+
 @keyframes blink {
   0%,
   50%,
@@ -204,5 +225,82 @@ h4 {
   25%,
   75% {
     opacity: 0;
+  }
+}
+@keyframes inputs {
+  0% {
+    -webkit-transform: translateZ(-1400px);
+    transform: translateZ(-1400px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+@keyframes bounce {
+  0% {
+    -webkit-transform: translateY(-500px);
+    transform: translateY(-500px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  38% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+  55% {
+    -webkit-transform: translateY(-65px);
+    transform: translateY(-65px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  72% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  81% {
+    -webkit-transform: translateY(-28px);
+    transform: translateY(-28px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  90% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+  95% {
+    -webkit-transform: translateY(-8px);
+    transform: translateY(-8px);
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
   }
 }

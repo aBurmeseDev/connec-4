@@ -5,7 +5,7 @@ Connec-4 is a two-player abstract strategy game in which the players first choos
 ### Objective
 The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one's own discs. Connect Four is a solved game. The first player can always win by playing the right moves.
 
-[Link to Game](https://aburmesedev.github.io/connec-4/)
+[Play here!](https://aburmesedev.github.io/connec-4/)
 ### Gameboard
 ![gameboard-image](https://user-images.githubusercontent.com/47447266/55832927-75a32d80-5acb-11e9-9d4a-9c630837314d.jpg)
 #### gameboard in play:
@@ -22,3 +22,7 @@ The objective of the game is to be the first to form a horizontal, vertical, or 
 * win or lose tracker
 * play with computer
 * betting system
+
+### Author
+
+* **John Lwin** - [see other works](https://www.johnlwin.info)

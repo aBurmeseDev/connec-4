@@ -23,6 +23,10 @@ The objective of the game is to be the first to form a horizontal, vertical, or 
 * play with computer
 * betting system
 
-### Author
 
-* **John Lwin** - [see other works](https://www.johnlwin.info)
+### Author 
+**John Lwin** - [see other works](https://www.johnlwin.info)
+
+### License
+
+This project is licensed under the MIT License
